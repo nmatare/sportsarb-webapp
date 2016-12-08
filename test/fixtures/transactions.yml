@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  credit: MyString
+  debit: MyString
+  created_at: 2016-12-07 18:45:28
+  name: MyString
+  user_id: 1
+  notes: MyText
+
+two:
+  credit: MyString
+  debit: MyString
+  created_at: 2016-12-07 18:45:28
+  name: MyString
+  user_id: 1
+  notes: MyText
