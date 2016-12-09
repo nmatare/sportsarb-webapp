@@ -1,58 +1,52 @@
 class BiosController < ApplicationController
-  before_action :set_bio, only: [:show, :edit, :update, :destroy]
+  #before_action :set_bio, only: [:profile, :edit, :update, :destroy]
 
-  # GET /bios
-  # GET /bios.json
-  def index
-    @bios = Bio.all
-  end
+  # Layout for user accounts
+  layout "account"
 
-  # GET /bios/1
-  # GET /bios/1.json
+  # Show Users Summary Dashboard
   def show
-  end
-
-  # GET /bios/new
-  def new
-    @bio = Bio.new
-  end
-
-  # GET /bios/1/edit
-  def edit
-  end
-
-  # POST /bios
-  # POST /bios.json
-  def create
-    @bio = Bio.new(bio_params)
-
-    respond_to do |format|
-      if @bio.save
-        format.html { redirect_to @bio, notice: 'Bio was successfully created.' }
-        format.json { render :show, status: :created, location: @bio }
+      if Bio.where(:user_id => current_user.id).last == nil #brand new user signed up    
+         render("/bios/new/")
       else
-        format.html { render :new }
-        format.json { render json: @bio.errors, status: :unprocessable_entity }
+        @bio = Bio.where(:user_id => current_user.id).last  #existing user signing in
+        render("/bios/show/")
       end
-    end
   end
 
-  # PATCH/PUT /bios/1
-  # PATCH/PUT /bios/1.json
+  # Show Users Profile
+  def profile
+      @bio = Bio.where(:user_id => current_user.id).last  # Get last updated bio of user
+  end
+
   def update
-    respond_to do |format|
-      if @bio.update(bio_params)
-        format.html { redirect_to @bio, notice: 'Bio was successfully updated.' }
-        format.json { render :show, status: :ok, location: @bio }
-      else
-        format.html { render :edit }
-        format.json { render json: @bio.errors, status: :unprocessable_entity }
-      end
+    #New biographical history is created for user
+    @bio = Bio.create(:user_id => current_user.id, #id remains fixed
+               :first_name => params[:bio][:first_name].strip.humanize, 
+               :last_name => params[:bio][:last_name].strip.humanize, 
+               :email => params[:bio][:email].strip.humanize, 
+               :phone_number => params[:bio][:phone_number].strip.humanize, 
+               :address => params[:bio][:address].strip.humanize, 
+               :state => params[:bio][:state].strip.humanize, 
+               :zipcode => params[:bio][:zipcode].strip.humanize, 
+               :country => params[:bio][:country].strip.humanize,  
+               :gender => params[:bio][:gender].strip, 
+               :age => params[:bio][:age].strip.humanize
+               )
+    @bio.save
+    if @bio.save
+      redirect_to("/bios/show/#{@bio.id}", :notice => "Profile updated successfully.")
+    else
+      render("bios/edit.html.erb")
     end
   end
 
-  # DELETE /bios/1
-  # DELETE /bios/1.json
+  # Edit Users Account Information
+  def edit
+    @bio = Bio.where(:user_id => current_user.id).last  # Get last updated bio of user
+  end
+
+  # Delete Users Account 
   def destroy
     @bio.destroy
     respond_to do |format|
@@ -61,14 +55,4 @@ class BiosController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bio
-      @bio = Bio.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def bio_params
-      params.require(:bio).permit(:user_id, :first_name, :last_name, :email, :phone_number, :address, :state, :zipcode, :country, :gender, :age)
-    end
 end

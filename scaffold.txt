@@ -1,0 +1,57 @@
+
+
+rails generate scaffold transaction credit:string debit:string created_at:datetime name:string user_id:integer notes:text
+
+# id | credit | debit | created_at | user_id | notes 
+# a user has many transactions
+# a transaction belongs to a user
+# a transcation is unique scope by credit and created_at
+# is dependent to user
+
+rails generate scaffold teams team_details:text sport:string game_date:date points:integer created_at:datetime transaction_id:integer 
+
+# id | team_id | game_date | points | created_at | transaction_id
+# a team belongs to a user
+# a team has many players
+# a user has many teams
+# game_date must be date
+# points must be integer
+# team_details is a JSON element of all the players on the team given by factor and by full_name along with their probability of game
+# is depedent to user
+
+rails generate model players name:string organic_team_name:string team_id:integers
+# id | name | organic_team_name | team_id
+# a player has many teams (remmber teams are optimized teams)
+
+# Players Database
+# Players are quered from API and it is stored in the instance ==> that is, it is not put into database,
+## Send to API Date, and players list with draftKinsg upload
+
+rails generate scaffold bio user_id:integer first_name:string last_name:string email:string phone_number:string address:text state:string zipcode:integer country:string gender:string age:integer
+
+# id | username | first_name | last_name | email | phone_number | address | state | zipcode | country | avatar | gender | age |
+# a user has many biographies
+# a biography belongs to to a user
+# is dependent to user
+
+# add gem file
+# gem 'devise'
+
+rails destory devise ## rest of generattion to destory
+rails generate devise:install
+rails g devise user 
+
+# add gem file for payments
+# allows the user to deposit money into their account from Swipe webapplication
+
+rails g controller payments transaction_id:integer
+
+# a payment belongs to a transaction
+
+rails generate stripe:install
+
+
+location
+
+
+

@@ -1,3 +1,13 @@
+
+<h2> Below are your optimized teams </h2>
+
+<p>
+  <strong> Your current teams include: </strong>
+ 
+ </p>
+
+<!-- template code -->
+
 <p id="notice"><%= notice %></p>
 
 <h1>Bios</h1>
@@ -34,7 +44,7 @@
         <td><%= bio.country %></td>
         <td><%= bio.gender %></td>
         <td><%= bio.age %></td>
-        <td><%= link_to 'Show', bio %></td>
+        <td><%= link_to 'Summary', bio %></td>
         <td><%= link_to 'Edit', edit_bio_path(bio) %></td>
         <td><%= link_to 'Destroy', bio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -45,3 +55,5 @@
 <br>
 
 <%= link_to 'New Bio', new_bio_path %>
+
+

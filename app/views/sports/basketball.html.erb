@@ -1,0 +1,15 @@
+
+          <p id="notice"><%= notice %></p>
+          <p> In order to forecast predictions, please enter the date of the game and upload a CSV file with the players and their teams </p>
+
+           <form action="/sports/predict/<%= current_user.id %>" enctype="multipart/form-data" method="post" class="form-horizontal">
+              <p> Please type in the game date:<br>
+              <input type="text" id="game_date" name="game_date" size="30">
+              </p>
+              <p> Please upload a CSV file with players:<br>
+              <input type="file" id="players" name="players" class="form-control" size="40">
+              </p>
+              <div>
+              <input type="submit" value="Send">
+              </div>
+              </form>

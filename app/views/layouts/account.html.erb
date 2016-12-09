@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+</head>
+
+<div class="page-container">
+  
+    <!-- top navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+       <div class="container">
+        <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+
+        <% if @bio != nil %> <!-- only dispaly if it an existing user -->
+        <ul class="nav navbar-nav pull-left">
+            <li class="dropdown">
+                <a href="#" id="nbAcctDD" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Dashboard<i class="icon-sort-down"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="/sports/basketball/<%= @current_user.id %>">NBA</a></li>
+                    <li><a href="/sports/football/<%= @current_user.id %>">Football</a></li>
+                    <li><a href="/sports/soccer/<%= @current_user.id %>">Soccer</a></li>
+                </ul>
+            </li>
+        </ul>
+        <% end %>
+
+        </div>
+
+        <ul class="nav navbar-nav pull-right">
+            <li class="dropdown">
+                <a href="#" id="nbAcctDD" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>
+
+                <% if @bio != nil %>
+                <%= @bio.email %>
+                <% else %>              
+                <% end %>
+
+                <i class="icon-sort-down"></i></a>
+                <ul class="dropdown-menu pull-right">
+                     <li><a href="/users/sign_out" data-method="delete" rel="nofollow"><i class="fa fa-fw fa-sign-out"></i> Sign Out</a></li>
+                </ul>
+            </li>
+        </ul>
+
+       </div>
+    </div>
+      
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-left">
+        
+        <!-- sidebar -->
+        <% if @bio != nil %> <!-- only dispaly if it an existing user -->
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav">
+              <li class="active">
+
+                  <a href="/bios/show/">Summary</a></li>
+              <li><a href="/bios/profile/<%= @current_user.id %>">View Profile</a></li>
+              <li><a href="/bios/balance/<%= @current_user.id %>">View Balance</a></li>
+              <li><a href="/bios/teams/<%= @current_user.id %>">View Teams</a></li>
+              <li><a href="/bios/profile/<%= @current_user.id %>">Delete Account</a></li>             
+            </ul>
+        </div>
+        <% end %>
+    
+        <!-- main area -->
+        <div id = "content" class="col-xs-12 col-sm-9">
+              <%= yield -%>
+              
+        </div><!-- /.col-xs-12 main -->
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.page-container-->

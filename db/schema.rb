@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208004649) do
+ActiveRecord::Schema.define(version: 20161209164357) do
 
   create_table "bios", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20161208004649) do
     t.integer  "age"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "last_upload"
   end
 
   create_table "teams", force: :cascade do |t|

@@ -1,0 +1,23 @@
+
+<p id="notice"><%= notice %></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Players</th>
+      <th>Estimated Points Scored</th>
+      <th>Extremely Bad Game</th>
+      <th>Bad Game</th>
+      <th>Average Game</th>
+      <th>Great Game</th>
+      <th>Extremy Great Game</th>
+    </tr>
+  </thead>
+
+</table>
+
+<p> Great! You generated an optimal lineup </p>
+
+<%= @player_pool %>
+<!-- each do all teams that where generated for this game_date -->
+<a href="/sports/optimize/<%= current_user.id %>?player_pool<%= @player_pool %>" class="btn btn-primary btn-block" >Create Optimized Team </a>

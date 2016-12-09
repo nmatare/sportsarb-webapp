@@ -1,0 +1,30 @@
+
+<p> Awesome you made predictions </p>
+<p id="notice"><%= notice %></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Players</th>
+      <th>Estimated Points Scored</th>
+      <th>Extremely Bad Game</th>
+      <th>Bad Game</th>
+      <th>Average Game</th>
+      <th>Great Game</th>
+      <th>Extremy Great Game</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @array.each do |n| %>
+      <tr>
+        <td><%= n %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- @array string is going to become too long, figure out a way to encode it or store in tempdatabase or something -->
+<!-- instead of passing the entire array, just pass the game_date, then go into the database and pull the player predictions by -->
+<a href="/sports/optimize/<%= current_user.id %>?player_pool=<%= @array %>" class="btn btn-primary btn-block" >Create Optimized Team </a>

@@ -1,34 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Team details:</strong>
-  <%= @team.team_details %>
-</p>
+<p> <strong>Your historical optimal lineups</strong> </p>
 
-<p>
-  <strong>Sport:</strong>
-  <%= @team.sport %>
-</p>
+<% if @teams != nil %>
+<tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><img src="<%= team.image_url %>" width="80"></td>
+        <td><%= team.team_details %></td>
+        <td><%= team.sport %></td>
+        <td><%= team.game_date %></td>
+        <td><%= team.points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+<% else %>
+<p> You have not generated any optimal teams yet </p>
+<% end %>
 
-<p>
-  <strong>Game date:</strong>
-  <%= @team.game_date %>
-</p>
-
-<p>
-  <strong>Points:</strong>
-  <%= @team.points %>
-</p>
-
-<p>
-  <strong>Created at:</strong>
-  <%= @team.created_at %>
-</p>
-
-<p>
-  <strong>Transaction:</strong>
-  <%= @team.transaction_id %>
-</p>
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>

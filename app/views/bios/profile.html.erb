@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @bio.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @bio.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @bio.email %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @bio.phone_number %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @bio.address %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @bio.state %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @bio.zipcode %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @bio.country %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @bio.gender %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @bio.age %>
+</p>
+
+<%= link_to 'Edit', edit_bio_path(@bio) %>

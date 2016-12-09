@@ -1,59 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+<!-- in summary add how many teams persson has added and balance and points and stuff  -->
+
+<h1> Welcome <%= @bio.first_name + " " + @bio.last_name %> </h1>
+
 <p>
-  <strong>User:</strong>
-  <%= @bio.user_id %>
+  <strong>You currently have an account balance of: $99,999</strong> <!-- query transaaction table and pull sum of transactions to date, or write method in chargesController to do this automatically -->
+ 
+ </p>
+
+<p>
+  <strong>You've generated 4543 number of teams </strong> <!-- count number of teams per user-->
+
 </p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @bio.first_name %>
-</p>
+  <strong>The average points scored for your optimal teams is 321 </strong> <!-- count number of teams per user-->
 
-<p>
-  <strong>Last name:</strong>
-  <%= @bio.last_name %>
 </p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @bio.email %>
-</p>
-
-<p>
-  <strong>Phone number:</strong>
-  <%= @bio.phone_number %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @bio.address %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @bio.state %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @bio.zipcode %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @bio.country %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @bio.gender %>
-</p>
-
-<p>
-  <strong>Age:</strong>
-  <%= @bio.age %>
-</p>
-
-<%= link_to 'Edit', edit_bio_path(@bio) %> |
-<%= link_to 'Back', bios_path %>
